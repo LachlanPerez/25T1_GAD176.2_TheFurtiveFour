@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace TheFurtiveFour.EnemyAI
@@ -8,13 +9,16 @@ namespace TheFurtiveFour.EnemyAI
     {
         public GameObject player;
 
+        [SerializeField] private TextMeshProUGUI enemyNameText;
         [SerializeField] private EnemyDetection enemyDetection;
         
         // Start is called before the first frame update
         void Start()
         {
             player = GameObject.FindWithTag("Player");
-            enemyDetection = GetComponent<EnemyDetection>();
+            enemyDetection = transform.GetChild(0).GetComponent<EnemyDetection>();
+            enemyNameText = GetComponentInChildren<TextMeshProUGUI>();
+            enemyNameText.text = name;
 
             if (player != null )
             {
@@ -27,8 +31,21 @@ namespace TheFurtiveFour.EnemyAI
         {
             if (enemyDetection != null && enemyDetection.DetectPlayer())
             {
-                Debug.Log("PLAYER SPOTTED");
+                // do move
             }
+            if (enemyNameText != null)
+            {
+                FacePlayer();
+            }
+        }
+        private void FacePlayer()
+        {
+            Vector3 directionToPlayer = player.transform.position - transform.position;
+            directionToPlayer.y = 0;
+
+            Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
+            enemyNameText.transform.rotation = Quaternion.LookRotation(-directionToPlayer);
+
         }
     }
 }

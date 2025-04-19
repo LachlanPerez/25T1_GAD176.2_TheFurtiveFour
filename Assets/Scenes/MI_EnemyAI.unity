@@ -271,6 +271,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1762682258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &720528234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1419072985060919630, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5088059179541545795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &720528236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720528234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17f71665ed87cb4da29a3879bf8fa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  turnSpeed: 0
+  enemy: {fileID: 0}
+  sightRange: 10
+  fieldOfView: 60
+  playerInSightRange: 0
+  playerInFieldOfView: 0
+  rayCastOrigin: {x: 0, y: 0, z: 0}
+  directionToPlayer: {x: 0, y: 0, z: 0}
+  directionNormalized: {x: 0, y: 0, z: 0}
+  eyeHeight: 1.5
+  distanceToPlayer: 0
+  angleToPlayer: 0
 --- !u!1 &735637694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1232,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+--- !u!20 &1479151734 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8944336655422409496, guid: f6d148d888ffbf54b9afe9936dfaec1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1221041499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1570112145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2476,7 +2513,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.972549, g: 0.9607843, b: 0.8784314, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2565,12 +2602,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &4416926083162682392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3548966602479020403, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5088059179541545795}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5088059179541545795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2582,8 +2613,18 @@ PrefabInstance:
     - target: {fileID: 3548966602479020403, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
         type: 3}
       propertyPath: m_Name
-      value: EnemyArmature
+      value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6143459711702673533, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6740070312316738528, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1479151734}
     - target: {fileID: 8760603686694427017, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2635,18 +2676,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5082362155143646842, guid: 4ffa20dfbfc8348489e70375f6f1e19d, type: 3}
+    - {fileID: 5931129799702619163, guid: 4ffa20dfbfc8348489e70375f6f1e19d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3548966602479020403, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
+    - targetCorrespondingSourceObject: {fileID: 1419072985060919630, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6982812148118074588}
-    - targetCorrespondingSourceObject: {fileID: 3548966602479020403, guid: 4ffa20dfbfc8348489e70375f6f1e19d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6982812148118074587}
+      addedObject: {fileID: 720528236}
   m_SourcePrefab: {fileID: 100100000, guid: 4ffa20dfbfc8348489e70375f6f1e19d, type: 3}
 --- !u!1001 &5226203432431967431
 PrefabInstance:
@@ -2731,48 +2768,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d001cacf887eb14cbf269a09e3ec3ba, type: 3}
---- !u!114 &6982812148118074587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416926083162682392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff859251f2f527743b27e15921733fb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  turnSpeed: 0
-  enemy: {fileID: 0}
---- !u!114 &6982812148118074588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416926083162682392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e17f71665ed87cb4da29a3879bf8fa2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  turnSpeed: 0
-  enemy: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  sightRange: 10
-  fieldOfView: 60
-  playerInSightRange: 0
-  playerInFieldOfView: 0
-  rayCastOrigin: {x: 0, y: 0, z: 0}
-  directionToPlayer: {x: 0, y: 0, z: 0}
-  directionNormalized: {x: 0, y: 0, z: 0}
-  distanceToPlayer: 0
-  angleToPlayer: 0
 --- !u!1001 &8345070700268369567
 PrefabInstance:
   m_ObjectHideFlags: 0

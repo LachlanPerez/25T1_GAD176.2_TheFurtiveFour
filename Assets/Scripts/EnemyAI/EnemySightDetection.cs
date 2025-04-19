@@ -5,7 +5,6 @@ using TheFurtiveFour.EnemyAI;
 
 public class EnemySightDetection : EnemyDetection
 {
-    public LayerMask layerMask;
 
     [SerializeField] private float sightRange = 10f;
     [SerializeField] private float fieldOfView = 60f;
@@ -15,26 +14,27 @@ public class EnemySightDetection : EnemyDetection
     [SerializeField] private Vector3 rayCastOrigin; // eye level of enemy character
     [SerializeField] private Vector3 directionToPlayer;
     [SerializeField] private Vector3 directionNormalized;
+    [SerializeField] private float eyeHeight = 1.7f;
     [SerializeField] private float distanceToPlayer;
     [SerializeField] private float angleToPlayer;
 
     public override bool DetectPlayer()
     {
-
-
         directionToPlayer = player.transform.position - transform.position;
 
-        distanceToPlayer = directionToPlayer.magnitude;
+        directionToPlayer.y = 0;
+
+        directionToPlayer.Normalize();
         
         angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-        if (distanceToPlayer <= sightRange && angleToPlayer <= fieldOfView / 2f)
+        if (angleToPlayer <= fieldOfView / 2f && directionToPlayer.magnitude <= sightRange)
         {
             directionNormalized = directionToPlayer.normalized;
 
-            rayCastOrigin = transform.position + Vector3.up * 1.7f;
+            rayCastOrigin = transform.position + Vector3.up * eyeHeight;
 
-            if (Physics.Raycast(rayCastOrigin, directionNormalized, out RaycastHit hit, sightRange, ~layerMask))
+            if (Physics.Raycast(rayCastOrigin, directionToPlayer, out RaycastHit hit, sightRange))
             {
                 if (hit.transform == player.transform)
                 {
