@@ -11,13 +11,14 @@ namespace TheFurtiveFour.MovingPlatforms
         public bool isMoving { get; private set; }
         [SerializeField] private bool checkIsMoving;
 
-        private Vector3 target;
-        private Vector3 lastPosition;
-
         public Vector3 deltaMovement { get; private set; }
+        private Vector3 target; // target destination for moving platform
+        private Vector3 lastPosition; 
+
 
         void Start()
         {
+            // start moving platform, set speed and idle time on both point a and b for platform
             isMoving = false;
             speed = 2f;
             waitTime = 5f;
@@ -35,9 +36,11 @@ namespace TheFurtiveFour.MovingPlatforms
 
         private IEnumerator MovePlatform()
         {
+            // used to loop move platform function in start
             while (true)
             {
                 isMoving = true;
+                Debug.Log("Platform Moving");
 
                 while (Vector3.Distance(transform.position, target) > 0.01f)
                 {
@@ -46,6 +49,8 @@ namespace TheFurtiveFour.MovingPlatforms
                 }
 
                 isMoving = false;
+                Debug.Log("Platform Stopped");
+                // waits for the amount of time the moving platform stops at a point to continue
                 yield return new WaitForSeconds(waitTime);
                 target = target == pointA ? pointB : pointA;
             }
