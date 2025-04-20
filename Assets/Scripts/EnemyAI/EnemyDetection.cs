@@ -7,7 +7,7 @@ public class EnemyDetection : MonoBehaviour
 {
     public GameObject player;
 
-    [SerializeField, Range(0,10)] public float turnSpeed;
+    [SerializeField, Range(0,30)] public float turnSpeed;
 
     [SerializeField] private GameObject enemy;
     // Start is called before the first frame update

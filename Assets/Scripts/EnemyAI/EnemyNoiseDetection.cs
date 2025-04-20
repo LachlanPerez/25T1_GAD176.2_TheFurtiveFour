@@ -82,19 +82,6 @@ public class EnemyNoiseDetection : EnemyDetection
         {
             Debug.Log("Player Noise Detected");
 
-            if (isWalking)
-            {
-                Debug.Log("walking");
-            }
-            if (isSprinting)
-            {
-                Debug.Log("sprinting");
-            }
-            if (isJumping)
-            {
-                Debug.Log("jumping");
-            }
-
             return true;
         }
 
