@@ -7,7 +7,7 @@ public class EnemyDetection : MonoBehaviour
 {
     public GameObject player;
 
-    public float turnSpeed;
+    [SerializeField, Range(0,10)] public float turnSpeed;
 
     [SerializeField] private GameObject enemy;
     // Start is called before the first frame update
@@ -15,7 +15,11 @@ public class EnemyDetection : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         enemy = this.gameObject;
-        turnSpeed = 3f;
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        return Vector3.Distance(transform.position, player.transform.position);
     }
 
     public virtual bool DetectPlayer()
