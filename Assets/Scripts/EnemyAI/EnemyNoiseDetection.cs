@@ -35,11 +35,14 @@ public class EnemyNoiseDetection : EnemyDetection
         {
             verticalSpeed = 0f;
             horizontalSpeed = 0f;
+            isWalking = false;
+            isSprinting = false;
+            isJumping = false;
             outOfRange = true;
             return false;
         }
 
-        if (outOfRange)
+        if (outOfRange && lastPlayerPosition == Vector3.zero)
         {
             lastPlayerPosition = player.transform.position;
             outOfRange = false;
@@ -60,7 +63,7 @@ public class EnemyNoiseDetection : EnemyDetection
         }
 
         isWalking = horizontalSpeed >= walkSpeedThreshold && distanceToPlayer <= hearWalkingRange;
-        isSprinting = horizontalSpeed >= sprintSpeedThreshold && distanceToPlayer <= hearSprintingAndJumpingRange;
+        isSprinting = (horizontalSpeed >= sprintSpeedThreshold && distanceToPlayer <= hearSprintingAndJumpingRange) && Input.GetKey(KeyCode.LeftShift);
         isJumping = !characterController.isGrounded && verticalSpeed > jumpThreshold;
 
 
@@ -91,6 +94,7 @@ public class EnemyNoiseDetection : EnemyDetection
             {
                 Debug.Log("jumping");
             }
+
             return true;
         }
 

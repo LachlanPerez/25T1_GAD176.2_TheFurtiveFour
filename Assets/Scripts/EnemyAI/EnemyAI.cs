@@ -21,6 +21,7 @@ namespace TheFurtiveFour.EnemyAI
         [SerializeField] private float sprintingSpeed = 5f;
         [SerializeField] private float stoppingDistance = 2f;
         [SerializeField] private float waitTimeAtPlayerLastKnownLocation = 3f;
+        [SerializeField] private Vector3 lastKnownLocation;
         
         // Start is called before the first frame update
         void Start()
@@ -48,12 +49,14 @@ namespace TheFurtiveFour.EnemyAI
             if (sightDetection != null && sightDetection.DetectPlayer())
             {
                 // do move
+                lastKnownLocation = noiseDetection.lastPlayerPosition;
                 MoveToPlayersLastKnownLocation(player.transform.position, stoppingDistance);
             }
 
             if (noiseDetection != null && noiseDetection.DetectPlayer() && !isMoving && !isRotating)
             {
                 // do investigate
+                lastKnownLocation = noiseDetection.lastPlayerPosition;
                 StartCoroutine(RotateThenMoveToLastKnownPosition());
             }
         }
@@ -81,7 +84,7 @@ namespace TheFurtiveFour.EnemyAI
 
             if (noiseDetection.GetDistanceToPlayer() > stoppingDistance)
             {
-                MoveToPlayersLastKnownLocation(noiseDetection.lastPlayerPosition, stoppingDistance);
+                MoveToPlayersLastKnownLocation(lastKnownLocation, stoppingDistance);
             }
             else
             {
@@ -115,7 +118,7 @@ namespace TheFurtiveFour.EnemyAI
         {
             isRotating = true;
 
-            Vector3 flatTarget = new Vector3(noiseDetection.lastPlayerPosition.x, transform.position.y, noiseDetection.lastPlayerPosition.z);
+            Vector3 flatTarget = new Vector3(lastKnownLocation.x, transform.position.y, lastKnownLocation.z);
             Vector3 direction = (flatTarget - transform.position).normalized;
 
             Debug.Log(name + " rotating");
@@ -136,9 +139,9 @@ namespace TheFurtiveFour.EnemyAI
 
             Debug.Log(name + " moving");
 
-            while (Vector3.Distance(transform.position, noiseDetection.lastPlayerPosition) > stoppingDistance)
+            while (Vector3.Distance(transform.position, lastKnownLocation) > stoppingDistance)
             {
-                Vector3 moveDirection = (noiseDetection.lastPlayerPosition - transform.position).normalized;
+                Vector3 moveDirection = (lastKnownLocation - transform.position).normalized;
                 moveDirection.y = 0;
                 transform.position += moveDirection * walkingSpeed * Time.deltaTime;
 
