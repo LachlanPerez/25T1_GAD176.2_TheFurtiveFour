@@ -17,6 +17,7 @@ public class EnemyNoiseDetection : EnemyDetection
     [SerializeField] private float distanceToPlayer;
     [SerializeField] private float verticalSpeed;
     [SerializeField] private float horizontalSpeed;
+    [SerializeField] private bool outOfRange;
     [SerializeField] private bool isWalking;
     [SerializeField] private bool isSprinting;
     [SerializeField] private bool isJumping;
@@ -34,12 +35,14 @@ public class EnemyNoiseDetection : EnemyDetection
         {
             verticalSpeed = 0f;
             horizontalSpeed = 0f;
+            outOfRange = true;
             return false;
         }
 
-        if (lastPlayerPosition == Vector3.zero)
+        if (outOfRange)
         {
             lastPlayerPosition = player.transform.position;
+            outOfRange = false;
             return false;
         }
 
@@ -50,6 +53,11 @@ public class EnemyNoiseDetection : EnemyDetection
         horizontalSpeed = new Vector3(velocity.x, 0f, velocity.z).magnitude;
 
         lastPlayerPosition = player.transform.position;
+
+        if (horizontalSpeed < 0.1f)
+        {
+            horizontalSpeed = 0f;
+        }
 
         isWalking = horizontalSpeed >= walkSpeedThreshold && distanceToPlayer <= hearWalkingRange;
         isSprinting = horizontalSpeed >= sprintSpeedThreshold && distanceToPlayer <= hearSprintingAndJumpingRange;
