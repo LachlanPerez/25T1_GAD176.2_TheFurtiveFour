@@ -18,6 +18,7 @@ public class EnemySightDetection : EnemyDetection
     [SerializeField] private Vector3 directionNormalized;
     [SerializeField] private float angleToPlayer;
 
+    // method to detect player using raycast projecting in front of enemy
     public override bool DetectPlayer()
     {
         directionToPlayer = player.transform.position - transform.position;
@@ -52,14 +53,19 @@ public class EnemySightDetection : EnemyDetection
 
         return false;
     }
+
+    // calls who sees player
     public override void DetectedPlayer()
     {
         Debug.Log("Player seen by " + name);
     }
-    public void OnDrawGizmosSelected() // used to visualise field of view and sight range in scene view
+
+    // used to visualise field of view and sight range in scene view
+    public void OnDrawGizmosSelected()
     {
         
         /// draws field of view cone
+        ///
 
         Gizmos.color = fieldOfViewColour;
         Vector3 forward = transform.forward;
@@ -83,6 +89,7 @@ public class EnemySightDetection : EnemyDetection
         Gizmos.DrawLine(transform.position, transform.position + rightDirection * sightRange);
 
         /// draws sight range radius
+        ///
 
         Gizmos.color = sightRangeColour;
         float angleStep = 360 / 64;

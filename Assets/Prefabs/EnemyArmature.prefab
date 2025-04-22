@@ -1066,10 +1066,10 @@ GameObject:
   - component: {fileID: 1812145044596464951}
   - component: {fileID: 8427414730675968768}
   - component: {fileID: 4934508557984030240}
-  - component: {fileID: 6251242789831011744}
-  - component: {fileID: 18666903657519982}
   - component: {fileID: 6516789230479938453}
   - component: {fileID: 3230007842722158242}
+  - component: {fileID: 6251242789831011744}
+  - component: {fileID: 18666903657519982}
   m_Layer: 0
   m_Name: EnemyArmature
   m_TagString: Enemy
@@ -1147,9 +1147,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71048b79223290438ba424c27f77450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   player: {fileID: 0}
+  sightDetection: {fileID: 0}
+  noiseDetection: {fileID: 0}
   enemyNameText: {fileID: 0}
-  enemyDetection: {fileID: 0}
+  walkingSpeed: 1.5
+  sprintingSpeed: 5
+  stoppingDistance: 2.5
+  waitAtLocation: 2
+  loseMemoryDuration: 5
+  pointA: {x: 0, y: 0, z: 0}
+  pointB: {x: 0, y: 0, z: 0}
+--- !u!114 &6516789230479938453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548966602479020403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17f71665ed87cb4da29a3879bf8fa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  turnSpeed: 5
+  enemy: {fileID: 0}
+  sightRange: 7.5
+  fieldOfView: 60
+  sightRangeColour: {r: 1, g: 0, b: 0, a: 1}
+  fieldOfViewColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  rayCastOrigin: {x: 0, y: 0, z: 0}
+  directionToPlayer: {x: 0, y: 0, z: 0}
+  directionNormalized: {x: 0, y: 0, z: 0}
+  angleToPlayer: 0
+--- !u!114 &3230007842722158242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548966602479020403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff859251f2f527743b27e15921733fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  turnSpeed: 50
+  enemy: {fileID: 0}
+  characterController: {fileID: 0}
+  outOfRange: 0
+  isWalking: 0
+  isSprinting: 0
+  isJumping: 0
+  hearWalkingRange: 5
+  hearSprintingAndJumpingRange: 15
+  walkSpeedThreshold: 1.5
+  sprintSpeedThreshold: 3
+  jumpThreshold: 1
+  distanceToPlayer: 0
+  verticalSpeed: 0
+  horizontalSpeed: 0
+  lastPlayerPosition: {x: 0, y: 0, z: 0}
 --- !u!136 &6251242789831011744
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1200,56 +1261,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &6516789230479938453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548966602479020403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e17f71665ed87cb4da29a3879bf8fa2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  turnSpeed: 0
-  enemy: {fileID: 0}
-  sightRange: 7.5
-  fieldOfView: 60
-  sightRangeColour: {r: 1, g: 0, b: 0, a: 1}
-  fieldOfViewColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  rayCastOrigin: {x: 0, y: 0, z: 0}
-  directionToPlayer: {x: 0, y: 0, z: 0}
-  directionNormalized: {x: 0, y: 0, z: 0}
-  angleToPlayer: 0
---- !u!114 &3230007842722158242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548966602479020403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff859251f2f527743b27e15921733fb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  turnSpeed: 0
-  enemy: {fileID: 0}
-  hearingRange: 15
-  walkSpeedThreshold: 1.5
-  sprintSpeedThreshold: 4
-  jumpThreshold: 1
-  characterController: {fileID: 0}
-  lastPlayerPosition: {x: 0, y: 0, z: 0}
-  distanceToPlayer: 0
-  verticalSpeed: 0
-  horizontalSpeed: 0
-  isWalking: 0
-  isSprinting: 0
-  isJumping: 0
 --- !u!1 &3638349101232654975
 GameObject:
   m_ObjectHideFlags: 0
