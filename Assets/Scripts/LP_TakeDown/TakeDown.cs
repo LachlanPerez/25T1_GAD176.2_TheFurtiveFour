@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TakeDown : MonoBehaviour
 {
-    public Transform player;
-    public Transform enemy;
-    public float takedownDistance = 2f;
-    public float rotationSpeed = 5f;
+    private Transform player;
+    private Transform enemy;
+    private float takedownDistance = 2f;
+    private float rotationSpeed = 5f;
 
     void Update()
     {
