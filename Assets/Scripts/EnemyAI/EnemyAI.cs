@@ -67,9 +67,7 @@ namespace TheFurtiveFour.EnemyAI
             // used for when player is detected by sight
             FacePlayer();
 
-            /// enemy sees player
-            ///
-
+            #region Enemy Sees Player 
             if (sightDetection.DetectPlayer())
             {
                 lastKnownLocation = player.transform.position;
@@ -82,9 +80,10 @@ namespace TheFurtiveFour.EnemyAI
                     currentState = EnemyState.Chasing;
                 }
             }
+            #endregion
 
-            /// enemy hears player and is not chasing them
-            /// 
+            #region enemy hears player and is not chasing them
+            
 
             if (noiseDetection.DetectPlayer() && currentState != EnemyState.Chasing)
             {
@@ -100,6 +99,8 @@ namespace TheFurtiveFour.EnemyAI
                     StartCoroutine(RotateThenMoveToLastKnownPosition());
                 }
             }
+
+            #endregion
 
             // used to switch between three enemy states, love enums <3
             switch (currentState)
@@ -121,6 +122,7 @@ namespace TheFurtiveFour.EnemyAI
         }
 
         // used to move to player or last heard noise
+        
         private void MoveTo(Vector3 target, float speed)
         {
             Vector3 direction = (target - transform.position);
