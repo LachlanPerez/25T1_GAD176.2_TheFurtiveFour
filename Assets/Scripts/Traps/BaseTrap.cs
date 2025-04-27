@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseTrap  : MonoBehaviour
+namespace Traps
 {
-    [SerializeField] protected float fireInterval = 2f;
-    protected float fireTimer;
-
-    protected virtual void Start()
+    public abstract class BaseTrap : MonoBehaviour
     {
-        fireTimer = fireInterval;
-    }
+        [SerializeField] protected float fireInterval = 2f;
+        protected float fireTimer;
 
-    protected virtual void Update()
-    {
-        fireTimer -= Time.deltaTime;
-
-        if (fireTimer <= 0f)
+        protected virtual void Start()
         {
-            Fire();
             fireTimer = fireInterval;
         }
-    }
 
-    
-    protected abstract void Fire();
+        protected virtual void Update()
+        {
+            fireTimer -= Time.deltaTime;
+
+            if (fireTimer <= 0f)
+            {
+                Fire();
+                fireTimer = fireInterval;
+            }
+        }
+
+
+        protected abstract void Fire();
+    }
 }

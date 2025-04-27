@@ -2,36 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapProjectile : MonoBehaviour
+namespace Traps
 {
-    [SerializeField] private float lifetime = 5f;
-
-    private Rigidbody rb;
-
-    private void Awake()
+    public class TrapProjectile : MonoBehaviour
     {
-        // Get the Rigidbody component when the object wakes up
-        rb = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private float lifetime = 5f;
 
-    private void Start()
-    {
-        // Automatically destroy the projectile after some time
-        Destroy(gameObject, lifetime);
-    }
+        private Rigidbody rb;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        Destroy(gameObject); // Destroy projectile when it hits something
-    }
-
-    
-    public void Launch(Vector3 velocity)
-    {
-        if (rb != null)
+        private void Awake()
         {
-            rb.velocity = velocity;
+            // Get the Rigidbody component when the object wakes up
+            rb = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            // Automatically destroy the projectile after some time
+            Destroy(gameObject, lifetime);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+
+            Destroy(gameObject); // Destroy projectile when it hits something
+        }
+
+
+        public void Launch(Vector3 velocity)
+        {
+            if (rb != null)
+            {
+                rb.velocity = velocity;
+            }
         }
     }
 }
