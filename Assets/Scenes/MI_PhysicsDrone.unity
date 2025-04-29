@@ -2855,7 +2855,7 @@ PrefabInstance:
     - target: {fileID: 837723377349764614, guid: 23d1390db0480ec44bde37a095bbbc36,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 837723377349764614, guid: 23d1390db0480ec44bde37a095bbbc36,
         type: 3}
@@ -2897,10 +2897,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2218607074091179293, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218607074091179293, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218607074091179293, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 2815452720295449271, guid: 23d1390db0480ec44bde37a095bbbc36,
         type: 3}
       propertyPath: m_Name
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308410690406677444, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308410690406677444, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: forceValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308410690406677444, guid: 23d1390db0480ec44bde37a095bbbc36,
+        type: 3}
+      propertyPath: maxMagnitudeValue
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

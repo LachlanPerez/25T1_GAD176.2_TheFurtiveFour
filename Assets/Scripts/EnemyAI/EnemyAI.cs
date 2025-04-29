@@ -21,6 +21,7 @@ namespace TheFurtiveFour.EnemyAI
         [Header("Scripts")]
         [SerializeField] private EnemySightDetection sightDetection;
         [SerializeField] private EnemyNoiseDetection noiseDetection;
+        [SerializeField] private DroneAI droneAI;
 
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI enemyNameText;
@@ -47,7 +48,9 @@ namespace TheFurtiveFour.EnemyAI
             player = GameObject.FindWithTag("Player");
             sightDetection = GetComponent<EnemySightDetection>();
             noiseDetection = GetComponent<EnemyNoiseDetection>();
+            droneAI = FindAnyObjectByType<DroneAI>();
             enemyNameText = GetComponentInChildren<TextMeshProUGUI>();
+            
             enemyNameText.text = name;
 
             // sets default states
@@ -78,6 +81,7 @@ namespace TheFurtiveFour.EnemyAI
                 {
                     StopAllCoroutines();
                     currentState = EnemyState.Chasing;
+                    droneAI.playerDetected = true;
                 }
             }
             #endregion
@@ -111,6 +115,7 @@ namespace TheFurtiveFour.EnemyAI
                     if (Time.time - lastTimeSawPlayer > loseMemoryDuration)
                     {
                         currentState = EnemyState.Patrolling;
+                        droneAI.playerDetected = false;
                         StartCoroutine(PatrolRoutine());
                     }
                     break;
