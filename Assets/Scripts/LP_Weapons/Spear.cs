@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TheFurtiveFour.Weapons
+namespace TheFurtiveFour.Weapon
 {
-    public class Spear : Weapons
+    public class Spear : Weapon
     {
         public override void Hit()
         {
-            Debug.Log("Spear thrust");
+            Debug.Log("Spear stab");
         }
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TheFurtiveFour.Weapons
+namespace TheFurtiveFour.Weapon
 {
-    public class Sword : Weapons
+    public class Sword : Weapon
     {
         public override void Hit()
         {
