@@ -14,13 +14,7 @@ namespace Interactable
 
     {
         Debug.Log("Interacting with an object.");
-    }
-
-        public void OnCollisionEnter(Collision collision)
-        {
-            Interact();
-            
-        }
+    }            
 
     }
 

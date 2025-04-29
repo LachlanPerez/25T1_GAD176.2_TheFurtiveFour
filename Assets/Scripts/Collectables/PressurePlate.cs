@@ -1,11 +1,13 @@
+using Interactable;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Door
+namespace Interactable
 {
-    
+
+   
     public class PressurePlate : MonoBehaviour
 {
     public GameObject door; // Assign the door GameObject in the inspector
@@ -13,6 +15,8 @@ namespace Door
     public float moveSpeed; // Speed at which the door opens
     private Vector3 originalPosition;
     private bool isPressed = false;
+
+    public KeyCard keyCard;
 
     void Start()
     {

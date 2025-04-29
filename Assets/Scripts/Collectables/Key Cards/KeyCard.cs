@@ -5,21 +5,30 @@ using UnityEngine;
 
 namespace Interactable
 {
+    
 public class KeyCard : Interactable
-{
-        GameObject GameObject;
-
-    public override void Interact()
     {
-        Debug.Log("Key card collected.");
+             
+    
+    public override void Interact()
+    {            
+                
+             Debug.Log("KeyCard has been Collected!");
 
-        // collecting the key card
-        // Hide the key card
-        GameObject.SetActive(false); 
+            // Disable KeyCard when collected
+            gameObject.SetActive(false);                  
+                                           
     }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Interact();
+            }
+        }
 
 
-}
+    }
 
 }

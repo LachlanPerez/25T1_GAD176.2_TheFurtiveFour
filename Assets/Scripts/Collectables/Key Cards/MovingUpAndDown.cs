@@ -14,6 +14,7 @@ public class MovingUpAndDown : MonoBehaviour
 
     void Start()
     {
+        // when the game starts, object starts moving
         startPosition = transform.position;
     }
 
