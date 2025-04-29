@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 # Starter Assets (Needs to be imported through Unity Package Manager!! - 1033864)
 /[Aa]ssets/[Ss]tarter\ Assets
+ProjectSettings/EditorBuildSettings.asset
