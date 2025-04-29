@@ -21,6 +21,7 @@ namespace TheFurtiveFour.EnemyAI
         [Header("Scripts")]
         [SerializeField] private EnemySightDetection sightDetection;
         [SerializeField] private EnemyNoiseDetection noiseDetection;
+        [SerializeField] private DroneAI droneAI;
 
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI enemyNameText;
@@ -47,7 +48,9 @@ namespace TheFurtiveFour.EnemyAI
             player = GameObject.FindWithTag("Player");
             sightDetection = GetComponent<EnemySightDetection>();
             noiseDetection = GetComponent<EnemyNoiseDetection>();
+            droneAI = FindAnyObjectByType<DroneAI>();
             enemyNameText = GetComponentInChildren<TextMeshProUGUI>();
+            
             enemyNameText.text = name;
 
             // sets default states
@@ -67,9 +70,7 @@ namespace TheFurtiveFour.EnemyAI
             // used for when player is detected by sight
             FacePlayer();
 
-            /// enemy sees player
-            ///
-
+            #region Enemy Sees Player 
             if (sightDetection.DetectPlayer())
             {
                 lastKnownLocation = player.transform.position;
@@ -80,11 +81,13 @@ namespace TheFurtiveFour.EnemyAI
                 {
                     StopAllCoroutines();
                     currentState = EnemyState.Chasing;
+                    droneAI.playerDetected = true;
                 }
             }
+            #endregion
 
-            /// enemy hears player and is not chasing them
-            /// 
+            #region enemy hears player and is not chasing them
+            
 
             if (noiseDetection.DetectPlayer() && currentState != EnemyState.Chasing)
             {
@@ -101,6 +104,8 @@ namespace TheFurtiveFour.EnemyAI
                 }
             }
 
+            #endregion
+
             // used to switch between three enemy states, love enums <3
             switch (currentState)
             {
@@ -110,6 +115,7 @@ namespace TheFurtiveFour.EnemyAI
                     if (Time.time - lastTimeSawPlayer > loseMemoryDuration)
                     {
                         currentState = EnemyState.Patrolling;
+                        droneAI.playerDetected = false;
                         StartCoroutine(PatrolRoutine());
                     }
                     break;
@@ -121,6 +127,7 @@ namespace TheFurtiveFour.EnemyAI
         }
 
         // used to move to player or last heard noise
+        
         private void MoveTo(Vector3 target, float speed)
         {
             Vector3 direction = (target - transform.position);
