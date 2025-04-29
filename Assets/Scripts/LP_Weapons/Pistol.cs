@@ -4,18 +4,30 @@ using UnityEngine;
 
 namespace TheFurtiveFour.Weapons
 {
-    public class Pistol : MonoBehaviour
+    public class Pistol : Weapons
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] public GameObject bulletPrefab;
+        [SerializeField] public Transform bulletSpawnPoint;
+        [SerializeField] public float bulletSpeed = 20f;
 
+        public override void Shoot()
+        {
+            if (bulletPrefab != null && bulletSpawnPoint != null)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    // Forward movement: spawn point forward + bullet's own forward
+                    Vector3 direction = bulletSpawnPoint.forward + bullet.transform.forward;
+                    rb.velocity = direction.normalized * bulletSpeed;
+                }
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Reload()
         {
-
+            Debug.Log("Reloading Pistol!");
         }
     }
 }

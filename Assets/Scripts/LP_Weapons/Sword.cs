@@ -4,18 +4,11 @@ using UnityEngine;
 
 namespace TheFurtiveFour.Weapons
 {
-    public class Sword : MonoBehaviour
+    public class Sword : Weapons
     {
-        // Start is called before the first frame update
-        void Start()
+        public override void Hit()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Debug.Log("Sword Slashes");
         }
     }
 }
