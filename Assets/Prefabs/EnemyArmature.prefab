@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 3230007842722158242}
   - component: {fileID: 6251242789831011744}
   - component: {fileID: 18666903657519982}
+  - component: {fileID: 928104085007921004}
   m_Layer: 0
   m_Name: EnemyArmature
   m_TagString: Enemy
@@ -1151,6 +1152,7 @@ MonoBehaviour:
   player: {fileID: 0}
   sightDetection: {fileID: 0}
   noiseDetection: {fileID: 0}
+  droneAI: {fileID: 0}
   enemyNameText: {fileID: 0}
   walkingSpeed: 1.5
   sprintingSpeed: 5
@@ -1172,8 +1174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  turnSpeed: 5
   enemy: {fileID: 0}
+  turnSpeed: 5
   sightRange: 7.5
   fieldOfView: 60
   sightRangeColour: {r: 1, g: 0, b: 0, a: 1}
@@ -1195,8 +1197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  turnSpeed: 50
   enemy: {fileID: 0}
+  turnSpeed: 50
   characterController: {fileID: 0}
   outOfRange: 0
   isWalking: 0
@@ -1261,6 +1263,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &928104085007921004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548966602479020403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75cb7301accfd1498d57f5b3226d3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  pistolRange: 5
+  swordRange: 3
+  spearRange: 6
+  fistRange: 2
+  weaponType: 3
+  weapon: {fileID: 0}
+  pistol: {fileID: 0}
 --- !u!1 &3638349101232654975
 GameObject:
   m_ObjectHideFlags: 0
